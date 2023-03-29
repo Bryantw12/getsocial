@@ -14,10 +14,6 @@ connection = pymysql.connect(
 app = Flask(__name__)
 
 
-if __name__=='__main__':
-        app.run(debug=True)
-
-
 
 @app.route("/")
 def index():
@@ -30,7 +26,7 @@ def post_feed():
     
     cursor = connection.cursor()
 
-    cursor.execute("SELECT * FROM  `post` ORDER BY `timestamps`")
+    cursor.execute("SELECT * FROM  `posts` ORDER BY `TimeStamp`")
 
     results = cursor.fetchall()
 
@@ -38,3 +34,7 @@ def post_feed():
         "feed.html.jinja",
         posts=results
     )
+
+if __name__=='__main__':
+        app.run(debug=True)
+

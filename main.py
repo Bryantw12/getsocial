@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect
+from flask import Flask, render_template, request, redirect , send_from_directory
 
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
 
@@ -15,7 +15,7 @@ app.config['SECRET_KEY'] = 'something_random'
 
 
 class User:
-     def _init_(self, id, username, banned):
+     def __init__(self, id, username, banned):
           self.is_authenticated = True
           self.is_anonymous = False
           self.is_active = not banned
@@ -23,9 +23,8 @@ class User:
           self.username = username
           self.id = id
 
-
-def get_id(self):
-     return str(self.id)
+     def get_id(self):
+          return str(self.id)
 
 
 connection = pymysql.connect(
@@ -49,7 +48,12 @@ def user_loader(user_id):
      if result is None:
           return None
 
-     return User(result['id,'], result["username"], result["banned"])
+     return User(result['id'], result["username"], result["banned"])
+
+
+@app.get('/media/<path:path>')
+def send_media(path):
+    return send_from_directory('media',path)
 
 
 @app.route("/")
@@ -112,13 +116,12 @@ def sign_in():
 
           cursor = connection.cursor()
 
-          cursor.execute(
-              f"SELECT * FROM `users` WHERE `username` = ' + {request.form ['username']}' ")
+          cursor.execute(f"SELECT * FROM `users` WHERE `username` =  '{request.form ['username']}' ")
 
           result = cursor.fetchone()
 
           if result is None:
-               return render_template("sign_in.html.jinga")
+               return render_template("sign_in.html.jinja")
 
           if request.form['password'] == result['password']:
               user = User(result['id'], result['username'], result['banned'])

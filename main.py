@@ -1,7 +1,6 @@
-from flask import Flask, render_template, request, redirect , send_from_directory
+from flask import Flask, render_template, request, redirect , send_from_directory , abort 
 
 from flask_login import LoginManager, login_required, login_user, current_user, logout_user
-
 
 import pymysql
 import pymysql.cursors
@@ -12,7 +11,6 @@ app = Flask(__name__)
 login_manager.init_app(app)
 
 app.config['SECRET_KEY'] = 'something_random'
-
 
 class User:
      def __init__(self, id, username, banned):
@@ -99,13 +97,11 @@ def create_post():
 
      return redirect('/feed')
 
-
 @app.route('/sign-out')
 def sign_out():
      logout_user()
 
      return redirect('/sign-in')
-
 
 @app.route('/sign-in', methods=['POST', 'GET'])
 def sign_in():
@@ -137,7 +133,6 @@ def sign_in():
 
      elif request.method == 'GET':
           return render_template("sign_in.html.jinja")
-
 
 @app.route('/sign-up', methods=['POST', 'GET'])
 def sign_up():
@@ -171,9 +166,34 @@ def sign_up():
         return redirect('/post')
      elif request.method == 'GET':
 
-        return render_template("sign.up.html.jinja")
+        return render_template("sign_up.html.jinja")
 
+@app.route('/profile/<username>')   
+
+def user_profile(username):
+    cursor = connection.cursor()
+
+    cursor.execute("SELECT * FROM `users` WHERE `username` = %s",(username))
+
+    result = cursor.fetchone()
+
+    if result is None:
+         abort(404)
+
+
+    cursor.close()
+    cursor = connection.cursor()
+    cursor.execute("SELECT * from `post` WHERE `user_id` = %s", (result['id']))
+
+    post_result = cursor.fetchall()
+
+    return render_template("user_profile.html.jinja",user= result, post = post_result)
+
+#Handling error 404 and displaying relevant web page
+@app.errorhandler(404)
+def not_found_error(error):
+    return render_template('error_page.html.jinja'),404
 
 if __name__=='__main__':
-         app.run(debug=True)
+         app.run(debug=True, port = 5001)
 

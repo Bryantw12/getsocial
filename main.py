@@ -161,7 +161,7 @@ def sign_up():
         INSERT INTO `users`(`username` , `email` , `display_name` , `password` , `bio` , `photo`,  `birthday`)
         VALUES(%s, %s, %s, %s, %s, %s)
     
-         """,(request.form['Username'], request.form['email_address'],request.form['dispay_name'],request.form['password'],request.form['bio'],file_name,request.form['birthday']))
+         """,(request.form['username'], request.form['email'],request.form['display_name'],request.form['password'],request.form['bio'],file_name,request.form['birthday']))
 
         return redirect('/post')
      elif request.method == 'GET':

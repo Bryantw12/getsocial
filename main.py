@@ -157,13 +157,13 @@ def sign_up():
         else:
              raise Exception('Invalid file type')
 
-        cursor.execute(""""
+        cursor.execute("""
         INSERT INTO `users`(`username` , `email` , `display_name` , `password` , `bio` , `photo`,  `birthday`)
-        VALUES(%s, %s, %s, %s, %s, %s)
+        VALUES(%s, %s, %s, %s, %s, %s,%s)
     
          """,(request.form['username'], request.form['email'],request.form['display_name'],request.form['password'],request.form['bio'],file_name,request.form['birthday']))
 
-        return redirect('/post')
+        return redirect('/sign-in')
      elif request.method == 'GET':
 
         return render_template("sign_up.html.jinja")

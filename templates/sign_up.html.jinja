@@ -1,66 +1,66 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Sign Up Form</title>
-        <link rel="stylesheet" href="https://codepen.io/gymratpacks/pen/VKzBEp#0">
-        <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
-        <link href = "/static/signup.css" type= "text/css" rel="stylesheet">
-        
-        <link rel="stylesheet" href="css/main.css">
-    </head>
-    <body>
-      <div class="row">
-    <div class="col-md-12">
-      <form 
-        action="/sign-up" method="post"
-        enctype="multipart/form-data"
-       >
-        <h1> Sign Up </h1>
-        
-        <fieldset>
-          
-          <legend><span class="number">1</span> Your Basic Info</legend>
-        
-          <label for="username">username:</label>
-          <input type="text"  name="username">
-        
-          <label for="email">Email:</label>
-          <input type="email" name="email">
-       
-          <label for="password">Password:</label>
-          <input type="password"    name="password">
-
-          <label for="Your name">Your Name:</label>
-          <input type="text"    name="display_name">
-
-          <label for="Birthday">Birthday:</label>
-          <input type="date"    name="birthday">
-         
-         <label class="form-label" for="photo">Profile Picture:</label>
-         <input type="file" name="photo" class="form-control form-control-lg" />
-                   
-        </fieldset>
-        <fieldset>  
-        
-          <legend><span class="number">2</span> Your Profile</legend>
-          
-         <label for="bio">Bio:</label>
-          <textarea id="bio" name="bio"></textarea>
-
-        
-        
-         
-          
-          
-         </fieldset>
-       
-        <button type="submit">Sign Up</button>
-        
-       </form>
-        </div>
-      </div>
+   <head>
+       <meta charset="utf-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Sign Up Form</title>
+       <link rel="stylesheet" href="https://codepen.io/gymratpacks/pen/VKzBEp#0">
+       <link href='https://fonts.googleapis.com/css?family=Nunito:400,300' rel='stylesheet' type='text/css'>
+       <link href = "/static/signup.css" type= "text/css" rel="stylesheet">
       
-    </body>
+       <link rel="stylesheet" href="css/main.css">
+   </head>
+   <body>
+     <div class="row">
+   <div class="col-md-12">
+     <form
+       action="/sign-up" method="post"
+       enctype="multipart/form-data"
+      >
+       <h1> Sign Up </h1>
+      
+       <fieldset>
+        
+         <legend><span class="number">1</span> Your Basic Info</legend>
+      
+         <label for="username">username:</label>
+         <input type="text"  name="username">
+      
+         <label for="email">Email:</label>
+         <input type="email" name="email">
+     
+         <label for="password">Password:</label>
+         <input type="password"    name="password">
+
+
+         <label for="Your name">Your Name:</label>
+         <input type="text"    name="display_name">
+
+
+         <label for="Birthday">Birthday:</label>
+         <input type="date"    name="birthday">
+       
+        <label class="form-label" for="photo">Profile Picture:</label>
+
+          <input type="file" name="photo" class="form-control form-control-lg" />
+                 
+       </fieldset>
+       <fieldset> 
+      
+         <legend><span class="number">2</span> Your Profile</legend>
+        
+        <label for="bio">Bio:</label>
+         <textarea id="bio" name="bio"></textarea>
+        
+        
+        </fieldset>
+     
+       <button type="submit">Sign Up</button>
+      
+      </form>
+       </div>
+     </div>
+    
+   </body>
 </html>
+

@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{# <!DOCTYPE html>
 <html lang="en"></html>
 <head>
 <meta charset="UTF-8">
@@ -48,8 +48,101 @@
 </body>
 
 </div>
+</html> #}
+
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp" crossorigin="anonymous">
+
+    
+        <link href="/static/feed.css" rel ="stylesheet">
+
+
+
+
+    </head>
+    <body>
+        <h1> GetSocial</h1>
+       
+        <main >
+
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+            <div class="container-fluid">
+                    <a class="navbar-brand" href="/"> GetSocial</a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="/profile/{{current_user.username}}">Profile</a>
+                            </li>
+                            <li class="nav-item">
+                            <a class="nav-link" href="/feed">Feed</a>
+                            </li>
+
+                             <li class="nav-item">
+                            <a class="nav-link" href="/sign-out">Signout</a>
+                            </li>
+                            <li class="nav-item">
+                            </li>
+                            </ul>
+                    </div>
+                </div>
+        </nav>
+    
+        
+            <div class="mx-auto p-2 border-dark rounded" style="width: 700px;">
+
+                <h2>Share a Post</h2>
+                <form action="/post" method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <input type="text" name="caption" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="What you thinking?">
+                    <br>
+                        <label for="exampleInputPassword1" class="form-label">Profile image</label>
+                        <input type="file" name="photo" class="form-control" id="exampleInputPassword1">
+                    <br>
+                        <button type="submit" class="w-100 btn btn-lg btn-primary" style="width: 150px;">Post</button>
+                </form>
+                </div>
+        
+        
+        
+        
+        
+       
+            {%for post in posts%}
+            <div class="post">
+            
+                <div class="card mx-auto" style="width: 28rem;" >
+                    <img src="/media/posts/{{post['post_image']}}" class="card-img-top" alt="...">
+                    <div class="card-body">
+                        <h5 class="card-title">{{post["user"]}} (@{{post["display_name"]}})</h5>
+                        <p>{{post['timestamp'].strftime("%b %d,%Y (%I:%M %p)")}}</p>
+                        <p class="card-text">{{post['caption']}}</p>
+                        <a href="#" class="btn btn-primary"></a>
+                    </div>
+                </div>
+               
+            
+            </div>
+            <div class="b-example-divider"></div>
+            {%endfor%}
+        
+        
+        </main>
+        
+    
+    
+    </body>
+
+
+
 </html>
-
-
 
 

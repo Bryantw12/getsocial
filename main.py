@@ -77,7 +77,7 @@ def post_feed():
 @app.route('/post', methods=['POST'])
 @login_required
 def create_post():
-     cursor = connection.cursor
+     cursor = connection.cursor()
 
      photo = request.files['photo']
 
@@ -93,7 +93,7 @@ def create_post():
 
      user_id = current_user.id
 
-     cursor.execute("INSERT INTO `users` (`post_text`, `post_image`, `user_id`) ")
+     cursor.execute("INSERT INTO `post` (`post_text`, `post_image`, `user_id`) VALUES(%s,%s,%s)", (file_name, request.form['post'],user_id,))
 
      return redirect('/feed')
 
@@ -112,12 +112,13 @@ def sign_in():
 
           cursor = connection.cursor()
 
-          cursor.execute(f"SELECT * FROM `users` WHERE `username` =  '{request.form ['username']}' ")
+          cursor.execute("SELECT * FROM `users` WHERE `username` = %s", {request.form ['username']})
+
 
           result = cursor.fetchone()
 
           if result is None:
-               return render_template("sign_in.html.jinja")
+               return render_template("sign_in.html.jinja") 
 
           if request.form['password'] == result['password']:
               user = User(result['id'], result['username'], result['banned'])

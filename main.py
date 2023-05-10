@@ -93,8 +93,8 @@ def create_post():
 
      user_id = current_user.id
 
-     cursor.execute("INSERT INTO `post` (`post_text`, `post_image`, `user_id`) VALUES(%s,%s,%s)", (file_name, request.form['post'],user_id,))
-
+     cursor.execute("INSERT INTO `posts` (`post_text ,`post_image`,`user_id`) VALUES(%s,%s,%s)", (file_name, request.form['post'],user_id,))
+ 
      return redirect('/feed')
 
 @app.route('/sign-out')

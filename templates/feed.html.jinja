@@ -116,7 +116,7 @@
                     <img src="/media/posts/{{post['post_image']}}" class="card-img-top" alt="...">
                     <div class="card-body">
                         <h5 class="card-title">{{post["user"]}} (@{{post["display_name"]}})</h5>
-                        <p>{{post['timestamp'].strftime("%b %d,%Y (%I:%M %p)")}}</p>
+                        <p>{{post['TimeStamp'].strftime("%b %d,%Y (%I:%M %p)")}}</p>
 
 
                         <p class="card-text">{{post['caption'] | escape }}</p>
